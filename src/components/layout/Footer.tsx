@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Instagram, Twitter, Star } from 'lucide-react';
+import { Phone, Mail, MapPin, Instagram, Twitter, Star, Facebook } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { siteConfig } from '@/lib/config';
 
@@ -132,11 +132,29 @@ const Footer = () => {
         </div>
 
         {/* Developer Credit */}
-        <div className="mt-6 text-center">
+        <div className="mt-6 flex flex-col items-center gap-2">
           <p className="text-muted-foreground text-xs">
             {language === 'ar' ? 'التطوير والبرمجة:' : 'Development & Programming:'}{' '}
             <span className="text-primary font-medium">محمود ظريف | Mahmoud Zarif</span>
           </p>
+          <div className="flex gap-3">
+            <a
+              href="https://www.facebook.com/mahmoud.esmaiel.91385/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-1.5 rounded-full bg-secondary/50 hover:bg-primary hover:text-primary-foreground transition-colors"
+            >
+              <Facebook className="w-4 h-4" />
+            </a>
+            <a
+              href="https://www.instagram.com/mahmoudesamiel/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-1.5 rounded-full bg-secondary/50 hover:bg-primary hover:text-primary-foreground transition-colors"
+            >
+              <Instagram className="w-4 h-4" />
+            </a>
+          </div>
         </div>
       </div>
     </footer>
