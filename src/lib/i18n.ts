@@ -11,10 +11,14 @@ export const translations = {
       booking: 'احجز الآن',
       contact: 'تواصل معنا',
       policies: 'السياسات',
+      therapists: 'اختر معالجك',
+      staff: 'فريقنا',
+      products: 'منتجاتنا',
+      vip: 'تجربة VIP',
     },
     // Hero
     hero: {
-      tagline: 'مركز العلاج الطبيعي والاسترخاء الفاخر',
+      tagline: 'مركز العافية والاسترخاء الفاخر (+18)',
       title: 'POP STATION',
       subtitle: 'حيث يلتقي الفخامة بالعافية',
       description: 'اكتشف تجربة استثنائية للعلاج الطبيعي والاسترخاء في أجواء راقية تجمع بين الخصوصية والرفاهية',
@@ -43,6 +47,10 @@ export const translations = {
         badge: '+18',
         description: 'صالة راقية للبالغين تضم البلياردو وألعاب الطاولة وألعاب الفيديو الرياضية',
       },
+      vip: {
+        title: 'تجربة VIP',
+        description: 'غرف خاصة فاخرة مع أولوية الحجز وجلسات ممتدة ومشروبات مجانية',
+      },
     },
     // Common
     common: {
@@ -63,6 +71,7 @@ export const translations = {
       professionalism: 'الاحترافية',
       excellence: 'التميز',
       respect: 'الاحترام',
+      statement: 'نؤمن أن الاسترخاء الحقيقي يبدأ عندما يشعر كل ضيف بالأمان والاحترام والتحكم في تجربته',
     },
     // Pricing
     pricing: {
@@ -84,10 +93,13 @@ export const translations = {
       date: 'التاريخ المفضل',
       time: 'الوقت المفضل',
       service: 'الخدمة المطلوبة',
+      therapist: 'المعالج المفضل',
       notes: 'ملاحظات إضافية',
       submit: 'إرسال الطلب',
       success: 'تم إرسال طلبك بنجاح!',
       successMessage: 'سيتواصل معك فريقنا قريباً لتأكيد الموعد',
+      noPreference: 'بدون تفضيل',
+      chooseTherapist: 'اختر المعالج',
     },
     // Contact
     contact: {
@@ -118,6 +130,34 @@ export const translations = {
       houseRules: 'قواعد المنشأة',
       nonDiscrimination: 'سياسة عدم التمييز',
     },
+    // Therapists
+    therapists: {
+      title: 'اختر معالجك',
+      subtitle: 'للضيوف حرية اختيار المعالج الذي يشعرون معه بالراحة',
+      filterByGender: 'الجنس',
+      filterByExperience: 'الخبرة',
+      all: 'الكل',
+      male: 'ذكر',
+      female: 'أنثى',
+      yearsExperience: 'سنوات خبرة',
+      select: 'اختيار المعالج',
+      selected: 'تم الاختيار',
+    },
+    // Products
+    products: {
+      title: 'منتجاتنا',
+      subtitle: 'منتجات عافية فاخرة لتعزيز تجربة الاسترخاء في منزلك',
+      addToCart: 'أضف للسلة',
+      cart: 'السلة',
+      total: 'المجموع',
+      inquireWhatsApp: 'استفسار عبر واتساب',
+    },
+    // VIP
+    vip: {
+      title: 'تجربة VIP',
+      subtitle: 'انغمس في عالم من الفخامة والخصوصية المطلقة',
+      requestAccess: 'طلب تجربة VIP',
+    },
   },
   en: {
     // Navigation
@@ -129,10 +169,14 @@ export const translations = {
       booking: 'Book Now',
       contact: 'Contact',
       policies: 'Policies',
+      therapists: 'Choose Therapist',
+      staff: 'Our Team',
+      products: 'Products',
+      vip: 'VIP Experience',
     },
     // Hero
     hero: {
-      tagline: 'Premium Physiotherapy & Relaxation Center',
+      tagline: 'Luxury Wellness & Adult Relaxation (+18)',
       title: 'POP STATION',
       subtitle: 'Where Luxury Meets Wellness',
       description: 'Discover an exceptional experience of physiotherapy and relaxation in an elegant atmosphere that combines privacy and luxury',
@@ -161,6 +205,10 @@ export const translations = {
         badge: '+18',
         description: 'Premium lounge for adults featuring billiards, board games, and sports video games',
       },
+      vip: {
+        title: 'VIP Experience',
+        description: 'Private luxury rooms with priority booking, extended sessions, and complimentary drinks',
+      },
     },
     // Common
     common: {
@@ -181,6 +229,7 @@ export const translations = {
       professionalism: 'Professionalism',
       excellence: 'Excellence',
       respect: 'Respect',
+      statement: 'We believe true relaxation starts when every guest feels safe, respected, and in control of their experience',
     },
     // Pricing
     pricing: {
@@ -202,10 +251,13 @@ export const translations = {
       date: 'Preferred Date',
       time: 'Preferred Time',
       service: 'Requested Service',
+      therapist: 'Preferred Therapist',
       notes: 'Additional Notes',
       submit: 'Submit Request',
       success: 'Request Submitted Successfully!',
       successMessage: 'Our team will contact you shortly to confirm your appointment',
+      noPreference: 'No Preference',
+      chooseTherapist: 'Choose Therapist',
     },
     // Contact
     contact: {
@@ -235,6 +287,34 @@ export const translations = {
       agePolicy: 'Age Policy (+18)',
       houseRules: 'House Rules',
       nonDiscrimination: 'Non-Discrimination Policy',
+    },
+    // Therapists
+    therapists: {
+      title: 'Choose Your Therapist',
+      subtitle: 'Clients are free to choose the therapist they feel most comfortable with',
+      filterByGender: 'Gender',
+      filterByExperience: 'Experience',
+      all: 'All',
+      male: 'Male',
+      female: 'Female',
+      yearsExperience: 'years experience',
+      select: 'Select Therapist',
+      selected: 'Selected',
+    },
+    // Products
+    products: {
+      title: 'Our Products',
+      subtitle: 'Premium wellness products to enhance your relaxation experience at home',
+      addToCart: 'Add to Cart',
+      cart: 'Cart',
+      total: 'Total',
+      inquireWhatsApp: 'Inquire via WhatsApp',
+    },
+    // VIP
+    vip: {
+      title: 'VIP Experience',
+      subtitle: 'Immerse yourself in a world of luxury and absolute privacy',
+      requestAccess: 'Request VIP Access',
     },
   },
 };

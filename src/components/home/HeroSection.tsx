@@ -2,12 +2,13 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MessageCircle, Calendar } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Language } from '@/lib/i18n';
 import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/lib/config';
 import heroImage from '@/assets/hero-spa.jpg';
 
 const HeroSection = () => {
-  const { t, isRTL } = useLanguage();
+  const { t, isRTL, language } = useLanguage();
 
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden">
@@ -31,7 +32,9 @@ const HeroSection = () => {
             transition={{ duration: 0.6 }}
             className="text-primary font-medium mb-4 tracking-wider uppercase text-sm"
           >
-            {t.hero.tagline}
+            {language === 'ar' 
+              ? 'مركز العافية والاسترخاء الفاخر (+18)' 
+              : 'Luxury Wellness & Adult Relaxation (+18)'}
           </motion.p>
 
           <motion.h1

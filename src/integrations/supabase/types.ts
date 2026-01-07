@@ -27,6 +27,7 @@ export type Database = {
           preferred_time: string
           service: string
           status: string
+          therapist_id: string | null
         }
         Insert: {
           created_at?: string
@@ -40,6 +41,7 @@ export type Database = {
           preferred_time: string
           service: string
           status?: string
+          therapist_id?: string | null
         }
         Update: {
           created_at?: string
@@ -53,6 +55,54 @@ export type Database = {
           preferred_time?: string
           service?: string
           status?: string
+          therapist_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "booking_requests_therapist_id_fkey"
+            columns: ["therapist_id"]
+            isOneToOne: false
+            referencedRelation: "therapists"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      products: {
+        Row: {
+          category: string
+          created_at: string
+          description_ar: string | null
+          description_en: string | null
+          id: string
+          image_url: string | null
+          is_active: boolean
+          name_ar: string
+          name_en: string
+          price: number
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          description_ar?: string | null
+          description_en?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          name_ar: string
+          name_en: string
+          price: number
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description_ar?: string | null
+          description_en?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          name_ar?: string
+          name_en?: string
+          price?: number
         }
         Relationships: []
       }
@@ -86,6 +136,54 @@ export type Database = {
           quote_ar?: string
           quote_en?: string
           rating?: number
+        }
+        Relationships: []
+      }
+      therapists: {
+        Row: {
+          bio_ar: string | null
+          bio_en: string | null
+          created_at: string
+          experience_years: number
+          gender: string
+          id: string
+          is_active: boolean
+          languages: string[]
+          name_ar: string
+          name_en: string
+          photo_url: string | null
+          specialties_ar: string[]
+          specialties_en: string[]
+        }
+        Insert: {
+          bio_ar?: string | null
+          bio_en?: string | null
+          created_at?: string
+          experience_years?: number
+          gender: string
+          id?: string
+          is_active?: boolean
+          languages?: string[]
+          name_ar: string
+          name_en: string
+          photo_url?: string | null
+          specialties_ar?: string[]
+          specialties_en?: string[]
+        }
+        Update: {
+          bio_ar?: string | null
+          bio_en?: string | null
+          created_at?: string
+          experience_years?: number
+          gender?: string
+          id?: string
+          is_active?: boolean
+          languages?: string[]
+          name_ar?: string
+          name_en?: string
+          photo_url?: string | null
+          specialties_ar?: string[]
+          specialties_en?: string[]
         }
         Relationships: []
       }

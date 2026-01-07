@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import AgeGateModal from "@/components/AgeGateModal";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -12,6 +13,10 @@ import Booking from "./pages/Booking";
 import Contact from "./pages/Contact";
 import Policies from "./pages/Policies";
 import Admin from "./pages/Admin";
+import Staff from "./pages/Staff";
+import ChooseTherapist from "./pages/ChooseTherapist";
+import Products from "./pages/Products";
+import VIP from "./pages/VIP";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +27,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <AgeGateModal />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
@@ -32,6 +38,10 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/policies" element={<Policies />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/staff" element={<Staff />} />
+            <Route path="/choose-therapist" element={<ChooseTherapist />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/vip" element={<VIP />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -1,23 +1,26 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, ChevronDown } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const { language, setLanguage, t, isRTL } = useLanguage();
   const location = useLocation();
 
-  const navLinks = [
+  const mainNavLinks = [
     { href: '/', label: t.nav.home },
     { href: '/about', label: t.nav.about },
     { href: '/services', label: t.nav.services },
+    { href: '/choose-therapist', label: t.nav.therapists },
+    { href: '/vip', label: t.nav.vip },
+    { href: '/products', label: t.nav.products },
     { href: '/pricing', label: t.nav.pricing },
     { href: '/contact', label: t.nav.contact },
-    { href: '/policies', label: t.nav.policies },
   ];
 
   const toggleLanguage = () => {
@@ -36,13 +39,13 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
+          <div className="hidden lg:flex items-center gap-6">
+            {mainNavLinks.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary relative",
+                  "text-sm font-medium transition-colors hover:text-primary relative py-2",
                   location.pathname === link.href
                     ? "text-primary"
                     : "text-muted-foreground"
@@ -52,7 +55,7 @@ const Navbar = () => {
                 {location.pathname === link.href && (
                   <motion.div
                     layoutId="navbar-indicator"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
+                    className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-primary"
                   />
                 )}
               </Link>
@@ -101,8 +104,8 @@ const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden bg-card border-b border-border"
           >
-            <div className="luxury-container py-4 space-y-4">
-              {navLinks.map((link) => (
+            <div className="luxury-container py-4 space-y-2">
+              {mainNavLinks.map((link) => (
                 <Link
                   key={link.href}
                   to={link.href}
@@ -117,11 +120,27 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
-              <Button variant="gold" className="w-full" asChild>
-                <Link to="/booking" onClick={() => setIsOpen(false)}>
-                  {t.nav.booking}
-                </Link>
-              </Button>
+              <Link
+                to="/staff"
+                onClick={() => setIsOpen(false)}
+                className="block py-2 text-base font-medium text-muted-foreground hover:text-primary"
+              >
+                {t.nav.staff}
+              </Link>
+              <Link
+                to="/policies"
+                onClick={() => setIsOpen(false)}
+                className="block py-2 text-base font-medium text-muted-foreground hover:text-primary"
+              >
+                {t.nav.policies}
+              </Link>
+              <div className="pt-4">
+                <Button variant="gold" className="w-full" asChild>
+                  <Link to="/booking" onClick={() => setIsOpen(false)}>
+                    {t.nav.booking}
+                  </Link>
+                </Button>
+              </div>
             </div>
           </motion.div>
         )}

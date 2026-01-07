@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Calendar, Clock, CheckCircle2 } from 'lucide-react';
+import { Calendar, Clock, CheckCircle2, Users } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -35,6 +38,7 @@ const bookingSchema = z.object({
   preferredDate: z.string().min(1, 'Date is required'),
   preferredTime: z.string().min(1, 'Time is required'),
   service: z.string().min(1, 'Service is required'),
+  therapistId: z.string().optional(),
   notes: z.string().optional(),
 });
 
@@ -43,8 +47,25 @@ type BookingFormData = z.infer<typeof bookingSchema>;
 const Booking = () => {
   const { t, language } = useLanguage();
   const { toast } = useToast();
+  const [searchParams] = useSearchParams();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const preselectedTherapistId = searchParams.get('therapist');
+
+  const { data: therapists } = useQuery({
+    queryKey: ['booking-therapists'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('therapists')
+        .select('id, name_ar, name_en')
+        .eq('is_active', true)
+        .order('name_en');
+      
+      if (error) throw error;
+      return data;
+    },
+  });
 
   const form = useForm<BookingFormData>({
     resolver: zodResolver(bookingSchema),
@@ -55,9 +76,16 @@ const Booking = () => {
       preferredDate: '',
       preferredTime: '',
       service: '',
+      therapistId: preselectedTherapistId || '',
       notes: '',
     },
   });
+
+  useEffect(() => {
+    if (preselectedTherapistId) {
+      form.setValue('therapistId', preselectedTherapistId);
+    }
+  }, [preselectedTherapistId, form]);
 
   const onSubmit = async (data: BookingFormData) => {
     setIsLoading(true);
@@ -69,6 +97,7 @@ const Booking = () => {
         preferred_date: data.preferredDate,
         preferred_time: data.preferredTime,
         service: data.service,
+        therapist_id: data.therapistId || null,
         notes: data.notes || null,
         language: language,
       });
@@ -148,6 +177,27 @@ const Booking = () => {
               {t.booking.subtitle}
             </p>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Choose Therapist CTA */}
+      <section className="bg-card border-y border-border">
+        <div className="luxury-container py-6">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <Users className="w-5 h-5 text-primary" />
+              <span className="text-foreground">
+                {language === 'ar' 
+                  ? 'هل تريد اختيار معالج محدد؟' 
+                  : 'Want to choose a specific therapist?'}
+              </span>
+            </div>
+            <Button variant="gold-outline" asChild>
+              <Link to="/choose-therapist">
+                {language === 'ar' ? 'اختر معالجك' : 'Choose Your Therapist'}
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -239,6 +289,36 @@ const Booking = () => {
                             {servicesConfig[language].map((service, index) => (
                               <SelectItem key={index} value={service}>
                                 {service}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="therapistId"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{t.booking.therapist}</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue
+                                placeholder={t.booking.noPreference}
+                              />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="none">
+                              {t.booking.noPreference}
+                            </SelectItem>
+                            {therapists?.map((therapist) => (
+                              <SelectItem key={therapist.id} value={therapist.id}>
+                                {language === 'ar' ? therapist.name_ar : therapist.name_en}
                               </SelectItem>
                             ))}
                           </SelectContent>
