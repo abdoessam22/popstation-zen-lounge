@@ -9,12 +9,12 @@ export const siteConfig = {
     ar: 'دكتور بوب | دكتور جونسون',
     en: 'Dr. Bob | Dr. Johnson',
   },
-  phone: '+966 XX XXX XXXX',
-  whatsapp: '+966XXXXXXXXX',
+  phone: '+20 11 50278049',
+  whatsapp: '+201150278049',
   email: 'info@popstation.com',
   address: {
-    ar: 'المنشية سيتي، بجوار بيت ريجبسكا الإنجليزي',
-    en: 'El-Manshia City, next to the English Regibska House',
+    ar: 'أسفل بيت الشاب سيد بجوار الرجبسكا الإنجليزي',
+    en: 'Below Sayed House, next to English Regibska',
   },
   workingHours: {
     ar: 'السبت - الخميس: 10 صباحاً - 10 مساءً',
