@@ -1,12 +1,20 @@
 // Site configuration - Easy to edit contact info and hours
 export const siteConfig = {
   name: 'POP STATION',
+  owner: {
+    ar: 'د. عبدالرحمن السيد ناصف',
+    en: 'Dr. Abdulrahman El-Sayed Nasef',
+  },
+  ownerNickname: {
+    ar: 'دكتور بوب | دكتور جونسون',
+    en: 'Dr. Bob | Dr. Johnson',
+  },
   phone: '+966 XX XXX XXXX',
   whatsapp: '+966XXXXXXXXX',
   email: 'info@popstation.com',
   address: {
-    ar: 'الرياض، المملكة العربية السعودية',
-    en: 'Riyadh, Saudi Arabia',
+    ar: 'المنشية سيتي، بجوار بيت ريجبسكا الإنجليزي',
+    en: 'El-Manshia City, next to the English Regibska House',
   },
   workingHours: {
     ar: 'السبت - الخميس: 10 صباحاً - 10 مساءً',
@@ -58,6 +66,7 @@ export const servicesConfig = {
     'المساج - العلاج العطري',
     'غرفة الاسترخاء الخاصة',
     'صالة الألعاب للكبار',
+    'تجربة VIP',
   ],
   en: [
     'Physiotherapy - Rehabilitation',
@@ -70,5 +79,6 @@ export const servicesConfig = {
     'Massage - Aromatherapy',
     'Private Relaxation Room',
     'Adult Games Lounge',
+    'VIP Experience',
   ],
 };
