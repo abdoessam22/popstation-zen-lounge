@@ -130,6 +130,14 @@ const Footer = () => {
             </Link>
           </div>
         </div>
+
+        {/* Developer Credit */}
+        <div className="mt-6 text-center">
+          <p className="text-muted-foreground text-xs">
+            {language === 'ar' ? 'التطوير والبرمجة:' : 'Development & Programming:'}{' '}
+            <span className="text-primary font-medium">محمود ظريف | Mahmoud Zarif</span>
+          </p>
+        </div>
       </div>
     </footer>
   );
