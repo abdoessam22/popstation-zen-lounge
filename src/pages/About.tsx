@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
-import { Shield, Users, Award, Heart, Eye, Target } from 'lucide-react';
+import { Shield, Users, Award, Heart, Eye, Target, Star, Quote } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { siteConfig } from '@/lib/config';
 import heroImage from '@/assets/hero-spa.jpg';
 
 const About = () => {
@@ -69,8 +70,75 @@ const About = () => {
         </div>
       </section>
 
-      {/* Mission Section */}
+      {/* Owner Section */}
       <section className="section-padding bg-card">
+        <div className="luxury-container">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="order-2 lg:order-1"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
+                <Star className="w-4 h-4" />
+                <span className="text-sm font-medium">
+                  {language === 'ar' ? 'المؤسس والمالك' : 'Founder & Owner'}
+                </span>
+              </div>
+              
+              <h2 className="font-display text-4xl font-bold mb-4 text-foreground">
+                {siteConfig.owner[language]}
+              </h2>
+              
+              <p className="text-primary text-xl mb-6">
+                {siteConfig.ownerNickname[language]}
+              </p>
+              
+              <p className="text-muted-foreground text-lg leading-relaxed mb-6">
+                {language === 'ar'
+                  ? 'متخصص في العلاج الطبيعي والطب التكميلي، بخبرة تمتد لسنوات في مجال العافية والصحة. أسس بوب ستيشن ليقدم تجربة فريدة تجمع بين العلاج المتخصص والاسترخاء الفاخر في بيئة تحترم خصوصية الضيوف.'
+                  : 'A specialist in physiotherapy and complementary medicine, with years of experience in wellness and health. He founded POP STATION to offer a unique experience that combines specialized treatment and luxury relaxation in an environment that respects guests\' privacy.'}
+              </p>
+              
+              <div className="p-6 rounded-2xl bg-background border border-border">
+                <Quote className="w-8 h-8 text-primary mb-4" />
+                <p className="text-foreground italic text-lg leading-relaxed">
+                  {t.about.statement}
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="order-1 lg:order-2 relative"
+            >
+              <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+                <div className="text-center p-8">
+                  <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
+                    <span className="text-5xl font-bold gold-gradient-text">Dr.</span>
+                  </div>
+                  <h3 className="font-display text-2xl font-bold text-foreground mb-2">
+                    {language === 'ar' ? 'دكتور بوب' : 'Dr. Bob'}
+                  </h3>
+                  <p className="text-primary">
+                    {language === 'ar' ? 'مؤسس بوب ستيشن' : 'Founder of POP STATION'}
+                  </p>
+                </div>
+              </div>
+              <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-primary/10 rounded-full blur-3xl" />
+              <div className="absolute -top-6 -left-6 w-32 h-32 bg-primary/20 rounded-full blur-2xl" />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission Section */}
+      <section className="section-padding bg-background">
         <div className="luxury-container">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -113,7 +181,7 @@ const About = () => {
       </section>
 
       {/* Values Section */}
-      <section className="section-padding bg-background">
+      <section className="section-padding bg-card">
         <div className="luxury-container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -136,7 +204,7 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="text-center p-8 rounded-2xl bg-card border border-border hover:border-primary/30 transition-all duration-300 hover-lift"
+                className="text-center p-8 rounded-2xl bg-background border border-border hover:border-primary/30 transition-all duration-300 hover-lift"
               >
                 <div className="inline-flex p-4 rounded-xl bg-primary/10 text-primary mb-6">
                   {value.icon}

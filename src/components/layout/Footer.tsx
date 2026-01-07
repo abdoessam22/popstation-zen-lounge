@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Instagram, Twitter } from 'lucide-react';
+import { Phone, Mail, MapPin, Instagram, Twitter, Star } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { siteConfig } from '@/lib/config';
 
@@ -11,16 +11,29 @@ const Footer = () => {
     <footer className="bg-card border-t border-border">
       <div className="luxury-container py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Brand */}
+          {/* Brand & Owner */}
           <div className="space-y-4">
             <h3 className="font-display text-2xl font-bold gold-gradient-text">
               POP STATION
             </h3>
             <p className="text-muted-foreground text-sm leading-relaxed">
               {language === 'ar' 
-                ? 'مركز العلاج الطبيعي والاسترخاء الفاخر. نقدم أعلى مستويات الرعاية في بيئة تحترم خصوصيتك.'
-                : 'Premium Physiotherapy & Relaxation Center. Providing the highest levels of care in an environment that respects your privacy.'}
+                ? 'مركز العافية والاسترخاء الفاخر. نقدم أعلى مستويات الرعاية في بيئة تحترم خصوصيتك.'
+                : 'Premium Wellness & Relaxation Center. Providing the highest levels of care in an environment that respects your privacy.'}
             </p>
+            <div className="pt-2 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                <Star className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <p className="text-sm font-medium text-foreground">
+                  {siteConfig.owner[language]}
+                </p>
+                <p className="text-xs text-primary">
+                  {siteConfig.ownerNickname[language]}
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Quick Links */}
@@ -35,8 +48,14 @@ const Footer = () => {
               <Link to="/services" className="text-muted-foreground hover:text-primary transition-colors text-sm">
                 {t.nav.services}
               </Link>
-              <Link to="/pricing" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                {t.nav.pricing}
+              <Link to="/choose-therapist" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                {t.nav.therapists}
+              </Link>
+              <Link to="/vip" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                {t.nav.vip}
+              </Link>
+              <Link to="/products" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                {t.nav.products}
               </Link>
               <Link to="/booking" className="text-muted-foreground hover:text-primary transition-colors text-sm">
                 {t.nav.booking}
@@ -58,8 +77,8 @@ const Footer = () => {
                 <Mail className="w-4 h-4 text-primary" />
                 <span className="text-sm">{siteConfig.email}</span>
               </div>
-              <div className="flex items-center gap-3 text-muted-foreground">
-                <MapPin className="w-4 h-4 text-primary" />
+              <div className="flex items-start gap-3 text-muted-foreground">
+                <MapPin className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-sm">{siteConfig.address[language]}</span>
               </div>
             </div>
@@ -105,6 +124,9 @@ const Footer = () => {
             </Link>
             <Link to="/policies" className="text-muted-foreground hover:text-primary transition-colors">
               {t.footer.terms}
+            </Link>
+            <Link to="/staff" className="text-muted-foreground hover:text-primary transition-colors">
+              {t.nav.staff}
             </Link>
           </div>
         </div>
