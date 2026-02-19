@@ -11,72 +11,78 @@ const Pricing = () => {
 
   const packages = [
     {
-      name: t.pricing.starter,
-      price: pricingConfig.starter.price,
-      currency: pricingConfig.starter.currency[language],
+      name: language === 'ar' ? '🌙 الأساسية' : '🌙 Starter',
+      price: language === 'ar' ? 'مجاناً' : 'FREE',
+      currency: '',
       description: language === 'ar'
-        ? 'مثالية للجلسات الفردية'
-        : 'Perfect for individual sessions',
+        ? '🎁 عرض رمضان - مجاناً بالكامل!'
+        : '🎁 Ramadan Offer - Completely FREE!',
       features: language === 'ar' ? [
-        'جلسة علاج طبيعي واحدة',
+        'جلسة علاج طبيعي واحدة مجاناً',
         'تقييم أولي مجاني',
         'خطة علاجية مبسطة',
         'متابعة هاتفية',
+        '🌟 عرض رمضان حصري',
       ] : [
-        'Single physiotherapy session',
+        'Single physiotherapy session FREE',
         'Free initial assessment',
         'Basic treatment plan',
         'Phone follow-up',
+        '🌟 Exclusive Ramadan offer',
       ],
       popular: false,
     },
     {
-      name: t.pricing.premium,
-      price: pricingConfig.premium.price,
-      currency: pricingConfig.premium.currency[language],
+      name: language === 'ar' ? '🌙 المميزة' : '🌙 Premium',
+      price: language === 'ar' ? 'مجاناً' : 'FREE',
+      currency: '',
       description: language === 'ar'
-        ? 'الخيار الأكثر شعبية'
-        : 'Most popular choice',
+        ? '⭐ عرض رمضان - الأكثر طلباً!'
+        : '⭐ Ramadan Offer - Most Popular!',
       features: language === 'ar' ? [
-        '5 جلسات علاج طبيعي',
+        '5 جلسات علاج طبيعي مجاناً',
         'تقييم شامل مجاني',
         'خطة علاجية متكاملة',
-        'جلسة مساج استرخائي',
+        'جلسة مساج استرخائي مجاناً',
         'متابعة مستمرة',
         'أولوية في الحجز',
+        '🌟 عرض رمضان حصري',
       ] : [
-        '5 physiotherapy sessions',
+        '5 physiotherapy sessions FREE',
         'Free comprehensive assessment',
         'Complete treatment plan',
-        'Relaxation massage session',
+        'Relaxation massage session FREE',
         'Continuous follow-up',
         'Priority booking',
+        '🌟 Exclusive Ramadan offer',
       ],
       popular: true,
     },
     {
-      name: t.pricing.elite,
-      price: pricingConfig.elite.price,
-      currency: pricingConfig.elite.currency[language],
+      name: language === 'ar' ? '🌙 النخبة + VIP' : '🌙 Elite + VIP',
+      price: language === 'ar' ? 'مجاناً' : 'FREE',
+      currency: '',
       description: language === 'ar'
-        ? 'تجربة فاخرة متكاملة'
-        : 'Complete luxury experience',
+        ? '👑 عرض رمضان - VIP مجاناً!'
+        : '👑 Ramadan Offer - VIP for FREE!',
       features: language === 'ar' ? [
-        '10 جلسات علاج طبيعي',
-        'تقييم شامل ومتابعة VIP',
+        '10 جلسات علاج طبيعي مجاناً',
+        'تقييم شامل ومتابعة VIP مجاناً',
         'خطة علاجية مخصصة بالكامل',
-        '3 جلسات مساج متنوعة',
+        '3 جلسات مساج متنوعة مجاناً',
         'وصول لصالة الألعاب',
-        'غرفة استرخاء خاصة',
-        'خصم 20% على الخدمات الإضافية',
+        'غرفة استرخاء خاصة VIP',
+        'تجربة VIP كاملة مجاناً',
+        '🌟 عرض رمضان الحصري',
       ] : [
-        '10 physiotherapy sessions',
-        'VIP assessment and follow-up',
+        '10 physiotherapy sessions FREE',
+        'VIP assessment and follow-up FREE',
         'Fully customized treatment plan',
-        '3 varied massage sessions',
+        '3 varied massage sessions FREE',
         'Games lounge access',
-        'Private relaxation room',
-        '20% off additional services',
+        'Private VIP relaxation room',
+        'Full VIP experience FREE',
+        '🌟 Exclusive Ramadan offer',
       ],
       popular: false,
     },
@@ -95,11 +101,13 @@ const Pricing = () => {
             className="text-center max-w-3xl mx-auto"
           >
             <h1 className="font-display text-5xl md:text-6xl font-bold mb-6">
-              <span className="gold-gradient-text">{t.pricing.title}</span>
+              <span className="gold-gradient-text">
+                {language === 'ar' ? '🌙 عروض رمضان المباركة' : '🌙 Ramadan Special Offers'}
+              </span>
             </h1>
             <div className="gold-divider my-8" />
             <p className="text-muted-foreground text-xl leading-relaxed">
-              {t.pricing.subtitle}
+              {language === 'ar' ? 'بمناسبة شهر رمضان الكريم، جميع خدماتنا مجاناً! رمضان كريم 🌟' : 'In celebration of Ramadan, all our services are FREE! Ramadan Kareem 🌟'}
             </p>
           </motion.div>
         </div>
@@ -176,8 +184,8 @@ const Pricing = () => {
             className="text-center text-muted-foreground mt-12"
           >
             {language === 'ar'
-              ? '* الأسعار تُحدد حسب الخدمة المطلوبة. تواصل معنا للحصول على عرض سعر مخصص.'
-              : '* Prices are determined based on the requested service. Contact us for a custom quote.'}
+              ? '* عروض رمضان سارية طوال الشهر الكريم. احجز الآن واستمتع بالعروض! 🌙'
+              : '* Ramadan offers are valid throughout the holy month. Book now and enjoy! 🌙'}
           </motion.p>
         </div>
       </section>
