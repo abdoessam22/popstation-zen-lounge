@@ -41,20 +41,22 @@ export const RamadanTopBar = () => {
   const { language } = useLanguage();
   
   return (
-    <div className="bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 border-b border-primary/20">
-      <div className="luxury-container">
-        <div className="flex items-center justify-center gap-3 py-2 text-sm">
-          <CrescentMoon className="text-primary" size={14} />
+    <div className="relative z-50 bg-gradient-to-r from-primary/25 via-primary/15 to-primary/25 border-b border-primary/30 overflow-hidden">
+      {/* Shimmer effect */}
+      <div className="absolute inset-0 gold-shimmer opacity-20" />
+      <div className="luxury-container relative">
+        <div className="flex items-center justify-center gap-3 py-2.5 text-sm">
+          <CrescentMoon className="text-primary" size={16} />
           <motion.span
-            className="text-primary font-medium"
-            animate={{ opacity: [0.7, 1, 0.7] }}
+            className="text-primary font-bold tracking-wide"
+            animate={{ opacity: [0.8, 1, 0.8] }}
             transition={{ duration: 3, repeat: Infinity }}
           >
             {language === 'ar' 
               ? '🌙 رمضان كريم — جميع الجلسات مجاناً! احجز الآن 🌟'
               : '🌙 Ramadan Kareem — All sessions FREE! Book now 🌟'}
           </motion.span>
-          <CrescentMoon className="text-primary" size={14} />
+          <CrescentMoon className="text-primary" size={16} />
         </div>
       </div>
     </div>
