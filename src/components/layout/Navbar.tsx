@@ -34,7 +34,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <span className="font-display text-2xl font-bold gold-gradient-text">
-              POP STATION
+              🌙 POP STATION
             </span>
           </Link>
 
