@@ -4,7 +4,6 @@ import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { cn } from '@/lib/utils';
-import { CrescentMoon } from '@/components/ramadan/RamadanDecorations';
 
 interface ServiceCardProps {
   title: string;
@@ -60,9 +59,8 @@ const ServiceCard = ({
       {/* Content */}
       <div className="p-6">
         <div className="flex items-start gap-4">
-          <div className="p-3 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300 relative">
+          <div className="p-3 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
             {icon}
-            <CrescentMoon className="absolute -top-1 -right-1 text-primary/50" size={10} />
           </div>
           <div className="flex-1">
             <h3 className="font-display text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
