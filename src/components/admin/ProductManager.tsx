@@ -17,6 +17,7 @@ interface Product {
   price: number;
   category: string;
   image_url: string | null;
+  image_urls: string[] | null;
   is_active: boolean;
 }
 
@@ -42,6 +43,7 @@ const ProductManager = () => {
 
   const createMutation = useMutation({
     mutationFn: async (data: Partial<Product>) => {
+      const imageUrls = data.image_urls || [];
       const { error } = await supabase.from('products').insert({
         name_ar: data.name_ar!,
         name_en: data.name_en!,
@@ -49,7 +51,8 @@ const ProductManager = () => {
         description_en: data.description_en,
         price: data.price || 0,
         category: data.category || 'general',
-        image_url: data.image_url,
+        image_url: imageUrls[0] || data.image_url || null,
+        image_urls: imageUrls,
         is_active: true,
       });
       if (error) throw error;
@@ -67,7 +70,11 @@ const ProductManager = () => {
 
   const updateMutation = useMutation({
     mutationFn: async ({ id, data }: { id: string; data: Partial<Product> }) => {
-      const { error } = await supabase.from('products').update(data).eq('id', id);
+      const updateData: any = { ...data };
+      if (data.image_urls) {
+        updateData.image_url = data.image_urls[0] || null;
+      }
+      const { error } = await supabase.from('products').update(updateData).eq('id', id);
       if (error) throw error;
     },
     onSuccess: () => {
@@ -95,30 +102,41 @@ const ProductManager = () => {
     },
   });
 
-  const handleUploadImage = async (file: File) => {
+  const handleUploadImages = async (files: FileList) => {
     setUploading(true);
     try {
-      const fileExt = file.name.split('.').pop();
-      const fileName = `product-${Date.now()}.${fileExt}`;
-      const filePath = `products/${fileName}`;
+      const uploadedUrls: string[] = [];
+      for (const file of Array.from(files)) {
+        const fileExt = file.name.split('.').pop();
+        const fileName = `product-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${fileExt}`;
+        const filePath = `products/${fileName}`;
 
-      const { error: uploadError } = await supabase.storage
-        .from('media')
-        .upload(filePath, file);
+        const { error: uploadError } = await supabase.storage
+          .from('media')
+          .upload(filePath, file);
 
-      if (uploadError) throw uploadError;
+        if (uploadError) throw uploadError;
 
-      const { data: { publicUrl } } = supabase.storage
-        .from('media')
-        .getPublicUrl(filePath);
+        const { data: { publicUrl } } = supabase.storage
+          .from('media')
+          .getPublicUrl(filePath);
 
-      setFormData({ ...formData, image_url: publicUrl });
-      toast.success('تم رفع الصورة بنجاح');
+        uploadedUrls.push(publicUrl);
+      }
+
+      const existing = formData.image_urls || [];
+      setFormData({ ...formData, image_urls: [...existing, ...uploadedUrls] });
+      toast.success(`تم رفع ${uploadedUrls.length} صورة بنجاح`);
     } catch (error: any) {
       toast.error('خطأ في رفع الصورة: ' + error.message);
     } finally {
       setUploading(false);
     }
+  };
+
+  const removeImage = (index: number) => {
+    const existing = formData.image_urls || [];
+    setFormData({ ...formData, image_urls: existing.filter((_, i) => i !== index) });
   };
 
   const startEdit = (product: Product) => {
