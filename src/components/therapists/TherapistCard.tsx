@@ -3,7 +3,6 @@ import { User, Award, Languages } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { RamadanBadge } from '@/components/ramadan/RamadanDecorations';
 
 interface TherapistCardProps {
   id: string;
@@ -65,9 +64,6 @@ const TherapistCard = ({
           : "border-border hover:border-primary/50"
       )}
     >
-      {/* Ramadan Badge */}
-      <RamadanBadge small />
-      
       {/* Photo */}
       <div className="aspect-[4/5] bg-gradient-to-br from-primary/20 to-primary/5 relative overflow-hidden">
         {photoUrl ? (

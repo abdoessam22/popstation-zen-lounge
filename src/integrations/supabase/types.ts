@@ -75,6 +75,7 @@ export type Database = {
           description_en: string | null
           id: string
           image_url: string | null
+          image_urls: string[]
           is_active: boolean
           name_ar: string
           name_en: string
@@ -87,6 +88,7 @@ export type Database = {
           description_en?: string | null
           id?: string
           image_url?: string | null
+          image_urls?: string[]
           is_active?: boolean
           name_ar: string
           name_en: string
@@ -99,6 +101,7 @@ export type Database = {
           description_en?: string | null
           id?: string
           image_url?: string | null
+          image_urls?: string[]
           is_active?: boolean
           name_ar?: string
           name_en?: string

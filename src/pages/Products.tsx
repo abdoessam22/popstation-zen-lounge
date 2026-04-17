@@ -189,7 +189,7 @@ const Products = () => {
             </div>
           ) : products && products.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {products.map((product) => (
+              {products.map((product: any) => (
                 <ProductCard
                   key={product.id}
                   id={product.id}
@@ -199,6 +199,7 @@ const Products = () => {
                   descriptionEn={product.description_en}
                   price={Number(product.price)}
                   imageUrl={product.image_url}
+                  imageUrls={product.image_urls}
                   category={product.category}
                   onAddToCart={handleAddToCart}
                 />
