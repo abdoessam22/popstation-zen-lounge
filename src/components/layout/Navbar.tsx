@@ -18,6 +18,7 @@ const Navbar = () => {
     { href: '/services', label: t.nav.services },
     { href: '/choose-therapist', label: t.nav.therapists },
     { href: '/vip', label: t.nav.vip },
+    { href: '/videos', label: t.nav.videos },
     { href: '/products', label: t.nav.products },
     { href: '/pricing', label: t.nav.pricing },
     { href: '/contact', label: t.nav.contact },

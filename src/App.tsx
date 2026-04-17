@@ -19,6 +19,7 @@ import Staff from "./pages/Staff";
 import ChooseTherapist from "./pages/ChooseTherapist";
 import Products from "./pages/Products";
 import VIP from "./pages/VIP";
+import Videos from "./pages/Videos";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -46,6 +47,7 @@ const App = () => (
               <Route path="/choose-therapist" element={<ChooseTherapist />} />
               <Route path="/products" element={<Products />} />
               <Route path="/vip" element={<VIP />} />
+              <Route path="/videos" element={<Videos />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
