@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Users, Package, Calendar, LogOut, Shield } from 'lucide-react';
+import { Users, Package, Calendar, LogOut, Shield, Film } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
 import TherapistManager from '@/components/admin/TherapistManager';
 import ProductManager from '@/components/admin/ProductManager';
 import BookingManager from '@/components/admin/BookingManager';
+import VideoManager from '@/components/admin/VideoManager';
 
 const Admin = () => {
   const { user, isAdmin, isLoading, signOut } = useAuth();
@@ -98,7 +99,7 @@ const Admin = () => {
       {/* Main Content */}
       <main className="luxury-container py-8">
         <Tabs defaultValue="bookings" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3 max-w-md">
+          <TabsList className="grid w-full grid-cols-4 max-w-2xl">
             <TabsTrigger value="bookings" className="gap-2">
               <Calendar className="w-4 h-4" />
               <span className="hidden sm:inline">الحجوزات</span>
@@ -110,6 +111,10 @@ const Admin = () => {
             <TabsTrigger value="products" className="gap-2">
               <Package className="w-4 h-4" />
               <span className="hidden sm:inline">المنتجات</span>
+            </TabsTrigger>
+            <TabsTrigger value="videos" className="gap-2">
+              <Film className="w-4 h-4" />
+              <span className="hidden sm:inline">الفيديوهات</span>
             </TabsTrigger>
           </TabsList>
 
@@ -123,6 +128,10 @@ const Admin = () => {
 
           <TabsContent value="products">
             <ProductManager />
+          </TabsContent>
+
+          <TabsContent value="videos">
+            <VideoManager />
           </TabsContent>
         </Tabs>
       </main>

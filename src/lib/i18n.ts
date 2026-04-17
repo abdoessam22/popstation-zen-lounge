@@ -15,6 +15,7 @@ export const translations = {
       staff: 'فريقنا',
       products: 'منتجاتنا',
       vip: 'تجربة VIP',
+      videos: 'الفيديوهات',
     },
     // Hero
     hero: {
@@ -158,6 +159,65 @@ export const translations = {
       subtitle: 'انغمس في عالم من الفخامة والخصوصية المطلقة',
       requestAccess: 'طلب تجربة VIP',
     },
+    // Videos
+    videos: {
+      title: 'مكتبة الفيديوهات',
+      subtitle: 'شاهد شغلنا، كورساتنا، وتجارب عملائنا',
+      categories: {
+        all: 'الكل',
+        work: 'من شغلنا',
+        courses: 'كورسات',
+        testimonials: 'تجارب العملاء',
+        tips: 'نصائح',
+      },
+      watchNow: 'شاهد الآن',
+      noVideos: 'لا توجد فيديوهات حالياً',
+    },
+    // Stats
+    stats: {
+      title: 'أرقامنا تتحدث',
+      subtitle: 'سنوات من التميز في خدمة عملائنا',
+      clients: 'عميل سعيد',
+      sessions: 'جلسة ناجحة',
+      experience: 'سنوات خبرة',
+      therapists: 'معالج محترف',
+    },
+    // FAQ
+    faq: {
+      title: 'الأسئلة الشائعة',
+      subtitle: 'إجابات على أكثر الأسئلة تكراراً',
+      questions: [
+        {
+          q: 'هل المركز مرخص ومعتمد؟',
+          a: 'نعم، بوب ستيشن مركز مرخص بالكامل ويعمل تحت إشراف د. عبدالرحمن السيد ناصف وفريق من المعالجين المحترفين المعتمدين.',
+        },
+        {
+          q: 'هل يمكنني اختيار جنس المعالج؟',
+          a: 'بالتأكيد، نوفر لك حرية اختيار المعالج (ذكر أو أنثى) من صفحة "اختر معالجك" قبل تأكيد الحجز.',
+        },
+        {
+          q: 'ما هي طبيعة صالة الكبار (+18)؟',
+          a: 'صالة راقية للبالغين فقط تضم البلياردو وألعاب الطاولة وألعاب الفيديو الرياضية في أجواء فاخرة. تجربة محترمة وغير جنسية بالكامل.',
+        },
+        {
+          q: 'كيف يمكنني حجز موعد؟',
+          a: 'يمكنك الحجز من خلال صفحة "احجز الآن" أو التواصل معنا مباشرة عبر واتساب وسيقوم فريقنا بتأكيد الموعد.',
+        },
+        {
+          q: 'هل يوجد مواقف للسيارات؟',
+          a: 'نعم، يتوفر مواقف خاصة للضيوف. يمكنك أيضاً طلب توصيل خاص ضمن باقات VIP.',
+        },
+        {
+          q: 'ما الفرق بين تجربة VIP والجلسات العادية؟',
+          a: 'تجربة VIP تشمل غرفاً خاصة فاخرة، أولوية في الحجز، جلسات ممتدة، ومشروبات مجانية، مع خدمة شخصية متميزة.',
+        },
+      ],
+    },
+    // Gallery
+    gallery: {
+      title: 'معرض المكان',
+      subtitle: 'تجوّل في أجواء بوب ستيشن',
+    },
   },
   en: {
     // Navigation
@@ -173,6 +233,7 @@ export const translations = {
       staff: 'Our Team',
       products: 'Products',
       vip: 'VIP Experience',
+      videos: 'Videos',
     },
     // Hero
     hero: {
@@ -315,6 +376,65 @@ export const translations = {
       title: 'VIP Experience',
       subtitle: 'Immerse yourself in a world of luxury and absolute privacy',
       requestAccess: 'Request VIP Access',
+    },
+    // Videos
+    videos: {
+      title: 'Video Library',
+      subtitle: 'Watch our work, courses, and client experiences',
+      categories: {
+        all: 'All',
+        work: 'Our Work',
+        courses: 'Courses',
+        testimonials: 'Client Stories',
+        tips: 'Tips',
+      },
+      watchNow: 'Watch Now',
+      noVideos: 'No videos available yet',
+    },
+    // Stats
+    stats: {
+      title: 'Our Numbers Speak',
+      subtitle: 'Years of excellence serving our clients',
+      clients: 'Happy Clients',
+      sessions: 'Successful Sessions',
+      experience: 'Years Experience',
+      therapists: 'Pro Therapists',
+    },
+    // FAQ
+    faq: {
+      title: 'Frequently Asked Questions',
+      subtitle: 'Answers to the most common questions',
+      questions: [
+        {
+          q: 'Is the center licensed and certified?',
+          a: 'Yes, POP STATION is fully licensed and operates under Dr. Abdulrahman El-Sayed Nasef and a team of certified professional therapists.',
+        },
+        {
+          q: 'Can I choose my therapist\'s gender?',
+          a: 'Absolutely. You can freely choose your therapist (male or female) from the "Choose Therapist" page before confirming your booking.',
+        },
+        {
+          q: 'What is the adult lounge (+18) about?',
+          a: 'A premium adults-only lounge featuring billiards, board games, and sports video games in a luxurious atmosphere. A respectful and entirely non-sexual experience.',
+        },
+        {
+          q: 'How can I book an appointment?',
+          a: 'You can book through the "Book Now" page or contact us directly via WhatsApp. Our team will confirm your appointment shortly.',
+        },
+        {
+          q: 'Is parking available?',
+          a: 'Yes, we provide private parking for guests. You can also request a private pickup as part of our VIP packages.',
+        },
+        {
+          q: 'What\'s the difference between VIP and regular sessions?',
+          a: 'VIP includes private luxury rooms, priority booking, extended sessions, complimentary drinks, and personalized premium service.',
+        },
+      ],
+    },
+    // Gallery
+    gallery: {
+      title: 'Place Gallery',
+      subtitle: 'Take a tour of POP STATION',
     },
   },
 };
