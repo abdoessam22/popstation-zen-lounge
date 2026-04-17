@@ -154,6 +154,7 @@ const ProductManager = () => {
       price: 0,
       category: 'general',
       image_url: '',
+      image_urls: [],
     });
   };
 
@@ -228,19 +229,51 @@ const ProductManager = () => {
               </Select>
             </div>
             <div className="md:col-span-2">
-              <label className="text-sm text-muted-foreground mb-1 block">صورة المنتج</label>
+              <label className="text-sm text-muted-foreground mb-1 block">
+                صور المنتج (يمكن إضافة أكثر من صورة)
+              </label>
+
+              {/* Existing images preview */}
+              {formData.image_urls && formData.image_urls.length > 0 && (
+                <div className="flex flex-wrap gap-3 mb-3">
+                  {formData.image_urls.map((url, idx) => (
+                    <div key={idx} className="relative group">
+                      <img
+                        src={url}
+                        alt={`Preview ${idx + 1}`}
+                        className="w-20 h-20 rounded-lg object-cover border border-border"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => removeImage(idx)}
+                        className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                        aria-label="حذف الصورة"
+                      >
+                        <X className="w-3 h-3" />
+                      </button>
+                      {idx === 0 && (
+                        <span className="absolute bottom-0 left-0 right-0 text-[10px] bg-primary text-primary-foreground text-center rounded-b-lg py-0.5">
+                          رئيسية
+                        </span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+
               <div className="flex items-center gap-4">
-                {formData.image_url && (
-                  <img src={formData.image_url} alt="Preview" className="w-16 h-16 rounded-lg object-cover" />
-                )}
                 <Input
                   type="file"
                   accept="image/*"
-                  onChange={(e) => e.target.files?.[0] && handleUploadImage(e.target.files[0])}
+                  multiple
+                  onChange={(e) => e.target.files && e.target.files.length > 0 && handleUploadImages(e.target.files)}
                   disabled={uploading}
                 />
                 {uploading && <span className="text-sm text-muted-foreground">جاري الرفع...</span>}
               </div>
+              <p className="text-xs text-muted-foreground mt-1">
+                الصورة الأولى هي الصورة الرئيسية. اختر عدة صور دفعة واحدة بالضغط على Ctrl/Cmd.
+              </p>
             </div>
             <div>
               <label className="text-sm text-muted-foreground mb-1 block">الوصف بالعربية</label>
