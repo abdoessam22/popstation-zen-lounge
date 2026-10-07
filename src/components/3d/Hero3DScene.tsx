@@ -22,7 +22,7 @@ const Sculpture = ({ side }: { side: number }) => {
   });
 
   return (
-    <group ref={group} position={[2.8 * side, 0, -0.5]} scale={0.8}>
+    <group ref={group} position={[2.2 * side, 0, -0.5]} scale={0.8}>
       <Float speed={1.2} rotationIntensity={0.4} floatIntensity={0.8}>
         <mesh ref={knot}>
           <torusKnotGeometry args={[1.1, 0.32, 220, 32, 2, 3]} />
