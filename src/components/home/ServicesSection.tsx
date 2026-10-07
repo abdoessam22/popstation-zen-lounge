@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import physiotherapyImage from '@/assets/physiotherapy.jpg';
 import loungeImage from '@/assets/lounge.jpg';
 import relaxationImage from '@/assets/relaxation-room.jpg';
+import massageImage from '@/assets/massage.jpg';
 
 const ServicesSection = () => {
   const { t, language, isRTL } = useLanguage();
@@ -23,6 +24,7 @@ const ServicesSection = () => {
       title: t.services.massage.title,
       description: t.services.massage.description,
       icon: <Sparkles className="w-6 h-6" />,
+      image: massageImage,
       delay: 0.1,
     },
     {
