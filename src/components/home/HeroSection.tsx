@@ -45,10 +45,10 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-6xl md:text-8xl lg:text-9xl font-bold mb-4 leading-[0.9]"
+            className="font-display text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold mb-4 leading-[1.05]"
           >
             <motion.span 
-              className="gold-gradient-text inline-block"
+              className="gold-gradient-text inline-block pb-1"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1.2, delay: 0.3 }}
@@ -57,7 +57,7 @@ const HeroSection = () => {
             </motion.span>
             <br />
             <motion.span 
-              className="gold-gradient-text inline-block"
+              className="gold-gradient-text inline-block pb-2"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1.2, delay: 0.5 }}
