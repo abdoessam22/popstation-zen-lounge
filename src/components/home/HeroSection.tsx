@@ -16,11 +16,11 @@ const HeroSection = () => {
       <Suspense fallback={
         <div className="absolute inset-0 bg-gradient-to-br from-background via-card to-background" />
       }>
-        <Hero3DScene />
+        <Hero3DScene rtl={isRTL} />
       </Suspense>
 
       {/* Gradient Overlays for readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/40 z-[1]" />
+      <div className="absolute inset-0 bg-gradient-to-r rtl:bg-gradient-to-l from-background/95 via-background/80 to-background/40 z-[1]" />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50 z-[1]" />
 
       {/* Content */}

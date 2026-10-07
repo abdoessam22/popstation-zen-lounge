@@ -6,7 +6,7 @@ import * as THREE from 'three';
 const GOLD = '#D4AF37';
 
 // Central liquid-gold sculpture that follows the pointer softly
-const Sculpture = () => {
+const Sculpture = ({ side }: { side: number }) => {
   const group = useRef<THREE.Group>(null);
   const knot = useRef<THREE.Mesh>(null);
 
@@ -22,7 +22,7 @@ const Sculpture = () => {
   });
 
   return (
-    <group ref={group} position={[2.6, 0, 0]}>
+    <group ref={group} position={[2.8 * side, 0, -0.5]} scale={0.8}>
       <Float speed={1.2} rotationIntensity={0.4} floatIntensity={0.8}>
         <mesh ref={knot}>
           <torusKnotGeometry args={[1.1, 0.32, 220, 32, 2, 3]} />
@@ -45,7 +45,7 @@ const Sculpture = () => {
   );
 };
 
-const Hero3DScene = () => (
+const Hero3DScene = ({ rtl = false }: { rtl?: boolean }) => (
   <div className="absolute inset-0 z-0">
     <Canvas
       dpr={[1, 1.75]}
@@ -57,7 +57,7 @@ const Hero3DScene = () => (
       <spotLight position={[6, 6, 6]} angle={0.4} penumbra={1} intensity={2} color="#ffe8a8" />
       <pointLight position={[-6, -3, 2]} intensity={1} color={GOLD} />
       <Environment preset="sunset" />
-      <Sculpture />
+      <Sculpture side={rtl ? -1 : 1} />
       <Sparkles count={80} scale={[14, 8, 6]} size={2} speed={0.3} color={GOLD} opacity={0.6} />
     </Canvas>
   </div>
