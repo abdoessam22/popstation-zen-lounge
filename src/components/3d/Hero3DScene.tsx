@@ -1,158 +1,66 @@
-import { useRef, useMemo } from 'react';
+import { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, MeshDistortMaterial, Sphere, Environment } from '@react-three/drei';
+import { Float, MeshTransmissionMaterial, Environment, Sparkles, MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 
-const FloatingSphere = ({ position, color, speed, distort, size }: {
-  position: [number, number, number];
-  color: string;
-  speed: number;
-  distort: number;
-  size: number;
-}) => {
-  const meshRef = useRef<THREE.Mesh>(null);
+const GOLD = '#D4AF37';
 
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * speed * 0.3;
-      meshRef.current.rotation.y = state.clock.elapsedTime * speed * 0.2;
+// Central liquid-gold sculpture that follows the pointer softly
+const Sculpture = ({ side }: { side: number }) => {
+  const group = useRef<THREE.Group>(null);
+  const knot = useRef<THREE.Mesh>(null);
+
+  useFrame((state, delta) => {
+    if (knot.current) {
+      knot.current.rotation.x += delta * 0.12;
+      knot.current.rotation.y += delta * 0.18;
+    }
+    if (group.current) {
+      group.current.rotation.y = THREE.MathUtils.lerp(group.current.rotation.y, state.pointer.x * 0.4, 0.05);
+      group.current.rotation.x = THREE.MathUtils.lerp(group.current.rotation.x, -state.pointer.y * 0.25, 0.05);
     }
   });
 
   return (
-    <Float speed={speed} rotationIntensity={0.5} floatIntensity={1}>
-      <Sphere ref={meshRef} args={[size, 64, 64]} position={position}>
-        <MeshDistortMaterial
-          color={color}
-          attach="material"
-          distort={distort}
-          speed={2}
-          roughness={0.2}
-          metalness={0.8}
-        />
-      </Sphere>
-    </Float>
+    <group ref={group} position={[2.2 * side, 0, -0.5]} scale={0.8}>
+      <Float speed={1.2} rotationIntensity={0.4} floatIntensity={0.8}>
+        <mesh ref={knot}>
+          <torusKnotGeometry args={[1.1, 0.32, 220, 32, 2, 3]} />
+          <meshStandardMaterial color={GOLD} metalness={1} roughness={0.15} envMapIntensity={1.4} />
+        </mesh>
+      </Float>
+      <Float speed={2} floatIntensity={1.5}>
+        <mesh position={[-1.6, 1.4, 1]}>
+          <sphereGeometry args={[0.45, 64, 64]} />
+          <MeshTransmissionMaterial thickness={0.6} roughness={0.05} transmission={1} ior={1.4} chromaticAberration={0.06} backside color="#fff6dd" />
+        </mesh>
+      </Float>
+      <Float speed={1.6} floatIntensity={1.2}>
+        <mesh position={[1.4, -1.6, 0.5]}>
+          <sphereGeometry args={[0.32, 64, 64]} />
+          <MeshDistortMaterial color="#1a1a1a" metalness={0.9} roughness={0.2} distort={0.35} speed={2} />
+        </mesh>
+      </Float>
+    </group>
   );
 };
 
-const GoldRing = ({ position, scale }: { position: [number, number, number]; scale: number }) => {
-  const meshRef = useRef<THREE.Mesh>(null);
-
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.3;
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.3;
-    }
-  });
-
-  return (
-    <mesh ref={meshRef} position={position} scale={scale}>
-      <torusGeometry args={[1, 0.05, 16, 100]} />
-      <meshStandardMaterial
-        color="#D4AF37"
-        metalness={1}
-        roughness={0.1}
-        emissive="#8B7500"
-        emissiveIntensity={0.2}
-      />
-    </mesh>
-  );
-};
-
-const ParticleField = () => {
-  const particlesRef = useRef<THREE.Points>(null);
-  
-  const particles = useMemo(() => {
-    const temp = [];
-    for (let i = 0; i < 200; i++) {
-      const x = (Math.random() - 0.5) * 20;
-      const y = (Math.random() - 0.5) * 20;
-      const z = (Math.random() - 0.5) * 10;
-      temp.push(x, y, z);
-    }
-    return new Float32Array(temp);
-  }, []);
-
-  useFrame((state) => {
-    if (particlesRef.current) {
-      particlesRef.current.rotation.y = state.clock.elapsedTime * 0.02;
-      particlesRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.1) * 0.1;
-    }
-  });
-
-  return (
-    <points ref={particlesRef}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={particles.length / 3}
-          array={particles}
-          itemSize={3}
-        />
-      </bufferGeometry>
-      <pointsMaterial
-        size={0.02}
-        color="#D4AF37"
-        transparent
-        opacity={0.6}
-        sizeAttenuation
-      />
-    </points>
-  );
-};
-
-const Hero3DScene = () => {
-  return (
-    <div className="absolute inset-0 z-0">
-      <Canvas
-        camera={{ position: [0, 0, 6], fov: 60 }}
-        gl={{ antialias: true, alpha: true }}
-        style={{ background: 'transparent' }}
-      >
-        <ambientLight intensity={0.4} />
-        <directionalLight position={[10, 10, 5]} intensity={1} color="#D4AF37" />
-        <directionalLight position={[-10, -10, -5]} intensity={0.3} color="#8B7500" />
-        <pointLight position={[0, 0, 5]} intensity={0.5} color="#FFD700" />
-        
-        <Environment preset="city" />
-        
-        <FloatingSphere 
-          position={[-3, 1, -2]} 
-          color="#1a1a1a" 
-          speed={1.5} 
-          distort={0.4}
-          size={1.2}
-        />
-        <FloatingSphere 
-          position={[3.5, -1, -1]} 
-          color="#D4AF37" 
-          speed={1} 
-          distort={0.3}
-          size={0.8}
-        />
-        <FloatingSphere 
-          position={[2, 2, -3]} 
-          color="#2d2520" 
-          speed={2} 
-          distort={0.5}
-          size={0.6}
-        />
-        <FloatingSphere 
-          position={[-2.5, -2, -2]} 
-          color="#8B7500" 
-          speed={1.2} 
-          distort={0.35}
-          size={0.9}
-        />
-        
-        <GoldRing position={[0, 0, -4]} scale={2} />
-        <GoldRing position={[-4, 2, -5]} scale={1.2} />
-        <GoldRing position={[4, -1.5, -6]} scale={1.5} />
-        
-        <ParticleField />
-      </Canvas>
-    </div>
-  );
-};
+const Hero3DScene = ({ rtl = false }: { rtl?: boolean }) => (
+  <div className="absolute inset-0 z-0">
+    <Canvas
+      dpr={[1, 1.75]}
+      camera={{ position: [0, 0, 6], fov: 50 }}
+      gl={{ antialias: true, alpha: true }}
+      style={{ background: 'transparent' }}
+    >
+      <ambientLight intensity={0.3} />
+      <spotLight position={[6, 6, 6]} angle={0.4} penumbra={1} intensity={2} color="#ffe8a8" />
+      <pointLight position={[-6, -3, 2]} intensity={1} color={GOLD} />
+      <Environment preset="sunset" />
+      <Sculpture side={rtl ? -1 : 1} />
+      <Sparkles count={80} scale={[14, 8, 6]} size={2} speed={0.3} color={GOLD} opacity={0.6} />
+    </Canvas>
+  </div>
+);
 
 export default Hero3DScene;

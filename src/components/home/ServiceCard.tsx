@@ -33,17 +33,18 @@ const ServiceCard = ({
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
       viewport={{ once: true }}
-      className="group relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-500 hover-lift"
+      className="group relative overflow-hidden rounded-3xl bg-card/60 backdrop-blur-sm border border-border/60 hover:border-primary/50 transition-all duration-500 hover-lift"
     >
       {/* Image */}
       {image && (
-        <div className="relative h-48 overflow-hidden">
+        <div className="relative aspect-[16/10] overflow-hidden">
           <img
             src={image}
             alt={title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            loading="lazy"
+            className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
         </div>
       )}
 
